@@ -2,7 +2,7 @@
   "name": "common-ancestor-path",
   "version": "1.0.0",
   "files": [
-    "index"
+    "index.js"
   ],
   "description": "Find the common ancestor of 2 or more paths on Windows or Unix",
   "repository": {
