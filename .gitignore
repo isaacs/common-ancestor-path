@@ -2,6 +2,9 @@
 /*
 /.*
 
+!src/
+!.tshy
+!.prettier*
 !bin/
 !lib/
 !docs/
@@ -9,7 +12,7 @@
 !package-lock.json
 !README.md
 !CONTRIBUTING.md
-!LICENSE
+!LICENSE*
 !CHANGELOG.md
 !example/
 !scripts/
