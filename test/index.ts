@@ -11,6 +11,10 @@ t.test('posix', async t => {
   t.equal(ancestor('/a', '/a/b/c'), '/a')
   t.equal(ancestor('/a/b/c', '/a'), '/a')
   t.equal(ancestor('/a/b/c'), '/a/b/c')
+  t.equal(ancestor('/x', '/y'), '/')
+  t.equal(ancestor('/', '/a'), '/')
+  t.equal(ancestor('/usr/lib', '/home/me', '/var/log'), '/')
+  t.equal(ancestor('a', 'b'), '')
   t.equal(ancestor('/a/b/c', null), null)
 })
 
@@ -24,5 +28,13 @@ t.test('win32', async t => {
   t.equal(ancestor('c:\\a\\b\\', 'd:\\a\\b\\'), null)
   t.equal(ancestor('c:\\a', 'c:\\a\\b\\c'), 'c:\\a')
   t.equal(ancestor('c:\\a\\b\\c'), 'c:\\a\\b\\c')
+  t.equal(ancestor('c:\\x', 'c:\\y'), 'c:\\')
+  t.equal(ancestor('c:\\', 'c:\\a'), 'c:\\')
+  t.equal(ancestor('c:\\a\\b', 'c:\\x\\y', 'c:\\p\\q'), 'c:\\')
+  t.equal(
+    ancestor('\\\\server\\share\\x', '\\\\server\\share\\y'),
+    '\\\\server\\share\\',
+  )
+  t.equal(ancestor('a', 'b'), '')
   t.equal(ancestor('c:\\a\\b\\c', null), null)
 })
