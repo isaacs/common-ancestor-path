@@ -8,13 +8,15 @@ function* commonArrayMembers(a: string[], b: string[]) {
   }
 }
 
-const cap = (a: string | null, b: string | null) =>
-  a === b ? a
-  : !a || !b ? null
-  : parse(a).root !== parse(b).root ? null
-  : [...commonArrayMembers(norm(a).split(sep), norm(b).split(sep))].join(
-      sep,
-    )
+const cap = (a: string | null, b: string | null) => {
+  if (a === b) return a
+  if (!a || !b || parse(a).root !== parse(b).root) return null
+  const root = parse(a).root
+  const common = [
+    ...commonArrayMembers(norm(a).split(sep), norm(b).split(sep)),
+  ].join(sep)
+  return common === root.slice(0, -1) ? root : common
+}
 
 export const commonAncestorPath = (...paths: (string | null)[]) =>
   paths.reduce(cap)
